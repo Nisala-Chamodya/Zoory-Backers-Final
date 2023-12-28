@@ -36,10 +36,10 @@ const Banner = () => {
 
                         {/*start second rating div*/}
                         <div className="sm:flex hidden bg-white py-2 px-3 rounded-2xl items-center gap-3 shadow-md w-[380px] ">
-                            <img src="/public/bannerpizza.jpg" alt="bannerpizza.jpg" className="w-auto h-[100px] rounded-2xl"/>
+                            <img src="/public/bannerhotdog.jpg" alt="bannerhotdog.jpg" className="w-auto h-[100px] rounded-2xl"/>
                             {/*start first rating details*/}
                             <div className="space-y-1">
-                                <h5 className="font-medium mb-1">Special Chicken Pizza </h5>
+                                <h5 className="font-medium mb-1">Special Hot Dog </h5>
                                 {/*start rating stars*/}
                                 <div className="rating rating-sm">
                                     <input type="radio" name="rating-2" className="mask mask-star-2 bg-orange-400" />
@@ -49,7 +49,7 @@ const Banner = () => {
                                     <input type="radio" name="rating-2" className="mask mask-star-2 bg-orange-400" />
                                 </div>
                                 {/*end rating stars*/}
-                                <p className="text-red">R.s. 1500.00</p>
+                                <p className="text-red">R.s. 500.00</p>
                             </div>
                             {/*end first rating details*/}
                         </div>
