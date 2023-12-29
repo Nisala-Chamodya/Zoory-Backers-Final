@@ -1,9 +1,23 @@
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import Slider from "react-slick";
+import React, {useEffect, useState} from "react";
 const SpecialDishes = () => {
+
+    {/*start declare recipes*/}
+    const [recipies,setResipies]=useState([]);
+    const slider=React.useRef(null)
+
+    useEffect(() => {
+            fetch("../../../public/menu.json").then(res => res.json()).then(data =>{
+                console.log(data)
+            })
+    },[])
+    {/*end declare recipes*/}
+
+
     {/*start setting*/}
-    var settings = {
+    const settings = {
         dots: true,
         infinite: false,
         speed: 500,
