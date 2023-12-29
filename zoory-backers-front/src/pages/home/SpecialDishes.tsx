@@ -2,6 +2,7 @@ import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import Slider from "react-slick";
 import React, {useEffect, useState} from "react";
+import Cards from "../../component/specialdishes/Cards.tsx";
 const SpecialDishes = () => {
 
     {/*start declare recipes*/}
@@ -10,7 +11,9 @@ const SpecialDishes = () => {
 
     useEffect(() => {
             fetch("../../../public/menu.json").then(res => res.json()).then(data =>{
-                console.log(data)
+               const specials =data.filter((item) => item.category === "popular")
+              //  console.log(specials)
+                setResipies(specials)
             })
     },[])
     {/*end declare recipes*/}
@@ -61,30 +64,12 @@ const SpecialDishes = () => {
             </div>
             {/*start react slider*/}
             <Slider {...settings}>
-                <div>
-                    <h3>1</h3>
-                </div>
-                <div>
-                    <h3>2</h3>
-                </div>
-                <div>
-                    <h3>3</h3>
-                </div>
-                <div>
-                    <h3>4</h3>
-                </div>
-                <div>
-                    <h3>5</h3>
-                </div>
-                <div>
-                    <h3>6</h3>
-                </div>
-                <div>
-                    <h3>7</h3>
-                </div>
-                <div>
-                    <h3>8</h3>
-                </div>
+                {
+                    recipies.map((item,i)=>(
+                        <Cards key={i} item={item}/>
+
+                    ))
+                }
             </Slider>
             {/*end rect slider*/}
             {/**end special dishes topic*/}
