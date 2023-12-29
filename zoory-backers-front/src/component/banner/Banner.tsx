@@ -8,7 +8,7 @@ const Banner = () => {
             <div className='py-24 flex flex-col md:flex-row-reverse justify-between items-center gap-8'>
                 {/*start banner image*/}
                 <div className="md:w-1/2">
-                    <img src="/public/bannerberger.jpg" alt="bannerberger" className="w-auto h-[500px]"/>
+                    <img src="/public/bannerberger.jpg" alt="bannerberger" className="w-auto h-[530px] rounded-[100%] mt-[25px] "/>
                     {/*end banner image*/}
                     {/*start rating images */}
                     <div className="flex flex-col md:flex-row items-center justify-around -mt-14 -ml-[100px] gap-20">
@@ -63,10 +63,10 @@ const Banner = () => {
                 {/*start text*/}
                 <div className="md:w-1/2 space-y-7 px-4">
                     <h2 className="md:text-5xl text-4xl font-bold md:leading-snug leading-snug">
-                        Dive into Delight of Delectable <span className="text-green">Food</span> </h2>
+                        Dive into Delight of Delectable <span className="text-[#FF9800]">Food</span> </h2>
                     <p className="text-xl text-[#4A4A4A]">Where Each Plate Waves a Story Of Culinary Mastery And
                         Passionate Craftsmanship</p>
-                    <button className='btn bg-green px-8 py-3 font-semibold text-white rounded-full'>Order Now</button>
+                    <button className='btn bg-[#FF9800] px-8 py-3 font-semibold text-white rounded-full'>Order Now</button>
                 </div>
                 {/*end text*/}
 

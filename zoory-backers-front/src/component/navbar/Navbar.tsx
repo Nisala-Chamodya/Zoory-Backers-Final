@@ -101,8 +101,8 @@ const Navbar = () => {
 
                     {/*end btn cart*/}
                     {/*contact btn start*/}
-                    <a className="flex items-center gap-2 px-5 mr-32 rounded-full btn bg-green text-slate-100">
-                        <BiPhoneCall style={{ backgroundColor: '#39DB4A' }} />
+                    <a className="flex items-center gap-2 px-5 mr-32 rounded-full btn bg-[#FF9800] text-slate-100">
+                        <BiPhoneCall style={{ backgroundColor: '#FF9800' }} />
                         Contact
                     </a>
                     {/*contact btn end*/}
