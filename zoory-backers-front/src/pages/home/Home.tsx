@@ -1,6 +1,7 @@
 import Banner from "../../component/banner/Banner.tsx";
 import Categories from "./Categories.tsx";
 import SpecialDishes from "./SpecialDishes.tsx";
+import Testimonials from "./Testimonials.tsx";
 
 
 const Home = () => {
@@ -9,6 +10,7 @@ const Home = () => {
             <Banner/>
             <Categories/>
             <SpecialDishes/>
+            <Testimonials/>
         </div>
     );
 };

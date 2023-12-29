@@ -22,10 +22,10 @@ const Cards = ({item}) => {
                 {/*end handle hart*/}
                 {/*start desiui card*/}
                <Link to={`/menu/${item._id}`}>
-                   <figure><img src={item.image} alt={item.name}  className="hover:scale-90 transition-all duration-200 md:h-72"/></figure>
+                   <figure><img src={item.image} alt={item.name}  className="hover:scale-75 transition-all duration-200 md:h-72"/></figure>
                </Link>
                 <div className="card-body">
-                    <h2 className="card-title">{item.name}</h2>
+                   <Link to={`/menu/${item._id}`}> <h2 className="card-title">{item.name}</h2></Link>
                     <p>Description of the item</p>
                     <div className="card-actions justify-between items-center mt-2">
                         <h5 className="font-semibold"><span className="text-sm text-red">R.S.</span> {item.price}</h5>
