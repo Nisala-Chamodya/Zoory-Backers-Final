@@ -31,12 +31,12 @@ const Navbar = () => {
 //end handle scroll
 
     const  navItems =<>
-            <li><a href="/">Home</a></li>
+            <li><a className="text-[#FF9800]" href="/">Home</a></li>
         <li tabIndex={0}>
             <details>
                 <summary>Menu</summary>
                 <ul className="p-2">
-                    <li><a>All</a></li>
+                    <li><a  href="/menu">All</a></li>
                     <li><a>Buns</a></li>
                     <li><a>Pizza</a></li>
                 </ul>
