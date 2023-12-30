@@ -1,6 +1,34 @@
+import {useEffect, useState} from "react";
 
 
 const Menu = () => {
+    const [menu,setMenu]=useState([]);
+    const[filterdItems,setFilterdItems]=useState([]);
+    const [selectedCategory,setSelectedCategory]=useState("all");
+    const [sortOption,setStartOption]=useState("default");
+
+    {/*start loading data*/}
+     useEffect(()=>{
+         {/*start fetch data from the back end*/}
+         const fetchData = async ()=>{
+             try{
+                 const response=await fetch("/menu.json");
+                 const data=await response.json();
+                // console.log(data)
+                 setMenu(data);
+                 setFilterdItems(data);
+             }catch (error){
+                 console.log("Error Fetching Data",error)
+             }
+
+         };
+         {/*end fetch data from the back end*/}
+         //call the function
+            fetchData();
+
+     },[])
+    {/*end loading data*/}
+
     return (
         <div className="mt-10" >
             {/*start Menu Banner*/}
@@ -23,6 +51,13 @@ const Menu = () => {
 
             </div>
             {/*End Menu Banner*/}
+
+            {/*start menu shop section*/}
+            <div className="section-container">
+
+                menu shop section
+            </div>
+            {/*end menu shop section*/}
         </div>
     );
 };
