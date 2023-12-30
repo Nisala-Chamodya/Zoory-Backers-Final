@@ -1,5 +1,6 @@
 import {useEffect, useState} from "react";
 import Cards from "../../component/specialdishes/Cards.tsx";
+import {FaFilter} from "react-icons/fa";
 
 
 const Menu = () => {
@@ -108,7 +109,53 @@ const Menu = () => {
             {/*start menu shop section*/}
             <div className="section-container">
                 {/*start filtering and sorting*/}
-                <div>filtering and sorting</div>
+                <div className="flex flex-col md:flex-row flex-wrap md:justify-between items-center space-y-3 mb-8">
+                    <div className="flex flex-row justify-start md:items-center md:gap-8 gap-4 flex-wrap">
+                        {/*all categories btns*/}
+                        <button onClick={showAll}
+                        className={selectedCategory === "all" ? "active" : ""}
+                        >All</button>
+                        <button onClick={() => filterItems("salad")}
+                                className={selectedCategory === "salad" ? "active" : ""}
+                        >Buns</button>
+                        <button onClick={() => filterItems("pizza")}
+                                className={selectedCategory === "pizza" ? "active" : ""}
+                        >Rise</button>
+                        <button onClick={() => filterItems("soup")}
+                                className={selectedCategory === "soup" ? "active" : ""}
+                        >kotthu</button>
+                        <button onClick={() => filterItems("dessert")}
+                                className={selectedCategory === "dessert" ? "active" : ""}
+                        >pizza</button>
+                        <button onClick={() => filterItems("drinks")}
+                                className={selectedCategory === "drinks" ? "active" : ""}
+                        >Deserts</button>
+
+                    </div>
+
+                    {/*start sorting base filtering*/}
+                    <div className="flex justify-end mb-4 rounded-sm">
+                       <div className=" bg-black p-2">
+                           <FaFilter className="h-4 w-4 text-white"/>
+                       </div>
+
+                        {/*start sorting option button*/}
+                        <select name="sort" id="sort"
+                        onChange={(e) =>handleSortChange(e.target.value)}
+                                value={sortOption}
+                                className="bg-black text-white px-2 py-1 rounded-sm" >
+                            <option value="default">Default</option>
+                            <option value="A-Z">A-Z</option>
+                            <option value="Z-A">Z-A</option>
+                            <option value="low-to-high">Low to High</option>
+                            <option value="high-to-low">High to Low</option>
+                       </select>
+                        {/*end sorting option button*/}
+                    </div>
+                    {/* end sorting base filtering*/}
+
+
+                </div>
                 {/*end filtering and sorting*/}
 
                 {/*start product cards*/}
