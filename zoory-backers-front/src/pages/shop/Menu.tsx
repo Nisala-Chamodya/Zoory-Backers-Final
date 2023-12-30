@@ -39,6 +39,15 @@ const Menu = () => {
     };
 
 
+    {/*start show all data*/}
+    const showAll = () =>{
+        setFilterdItems(menu);
+        setSelectedCategory("all");
+
+    }
+    {/*end show all data*/}
+
+
     {/*end filtering data based on category*/}
 
     return (
