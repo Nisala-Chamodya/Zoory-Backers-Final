@@ -1,4 +1,5 @@
 import {useEffect, useState} from "react";
+import Cards from "../../component/specialdishes/Cards.tsx";
 
 
 const Menu = () => {
@@ -70,6 +71,10 @@ const Menu = () => {
               default : break;
           }
 
+          setFilterdItems(sortedItems);
+
+
+
 
       }
     {/*end sorting based on A-Z , Z-A, Low-High pricing*/}
@@ -102,8 +107,20 @@ const Menu = () => {
 
             {/*start menu shop section*/}
             <div className="section-container">
+                {/*start filtering and sorting*/}
+                <div>filtering and sorting</div>
+                {/*end filtering and sorting*/}
 
-                menu shop section
+                {/*start product cards*/}
+                <div className="grid md:grid-cols-3 sm:grid-cols-2 grid-cols-1 gap-4">
+                    {
+                        filterdItems.map((item) =>(
+                            <Cards key={item._id} item={item}/>
+                        ))
+                    }
+                </div>
+                {/*end product cards*/}
+
             </div>
             {/*end menu shop section*/}
         </div>
