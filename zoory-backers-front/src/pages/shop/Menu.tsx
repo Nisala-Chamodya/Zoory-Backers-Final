@@ -5,7 +5,7 @@ const Menu = () => {
     const [menu,setMenu]=useState([]);
     const[filterdItems,setFilterdItems]=useState([]);
     const [selectedCategory,setSelectedCategory]=useState("all");
-    const [sortOption,setStartOption]=useState("default");
+    const [sortOption,setSortOption]=useState("default");
 
     {/*start loading data*/}
      useEffect(()=>{
@@ -46,6 +46,33 @@ const Menu = () => {
 
     }
     {/*end show all data*/}
+
+    {/*start sorting based on A-Z , Z-A, Low-High pricing*/}
+      const handleSortChange =(option)=>{
+        setSortOption(option)
+
+          let sortedItems =[...filterdItems];
+
+        //logic
+          switch (option){
+              case "A-Z" :
+                  sortedItems.sort((a, b) => a.name.localeCompare(b.name))
+                  break;
+              case "Z-A" :
+                  sortedItems.sort((a, b) => b.name.localeCompare(a.name))
+                  break;
+              case "low-to-high" :
+                  sortedItems.sort((a, b) => a.price - b.price)
+                  break;
+              case "high-to-low" :
+                  sortedItems.sort((a, b) => b.price - a.price)
+                  break;
+              default : break;
+          }
+
+
+      }
+    {/*end sorting based on A-Z , Z-A, Low-High pricing*/}
 
 
     {/*end filtering data based on category*/}
