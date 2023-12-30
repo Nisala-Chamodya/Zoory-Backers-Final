@@ -29,6 +29,18 @@ const Menu = () => {
      },[])
     {/*end loading data*/}
 
+    {/*start filtering data based on category*/}
+    const  filterItems= (category) =>{
+        const  fillterd = category === "all" ? menu : menu.filter((item)=> item.category === category);
+
+        setFilterdItems(fillterd);
+        setSelectedCategory(category)
+
+    };
+
+
+    {/*end filtering data based on category*/}
+
     return (
         <div className="mt-10" >
             {/*start Menu Banner*/}
