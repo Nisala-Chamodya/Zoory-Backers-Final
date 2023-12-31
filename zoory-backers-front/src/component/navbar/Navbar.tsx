@@ -101,12 +101,27 @@ const Navbar = () => {
                         </div>
 
                     {/*end btn cart*/}
-                    {/*contact btn start*/}
-                    <button className="flex items-center gap-2 px-5 mr-32 rounded-full btn bg-[#FF9800] text-slate-100">
+                    {/*login btn start*/}
+                    <button onClick={()=>document.getElementById('my_modal_5').showModal()}
+
+                            className="flex items-center gap-2 px-5 mr-32 rounded-full btn bg-[#FF9800] text-slate-100">
                         <FaUser className="bg-[#FF9800]"/>
                         Login
                     </button>
-                    {/*contact btn end*/}
+
+                    <dialog id="my_modal_5" className="modal modal-bottom sm:modal-middle">
+                        <div className="modal-box">
+                            <h3 className="font-bold text-lg">Hello!</h3>
+                            <p className="py-4">Press ESC key or click the button below to close</p>
+                            <div className="modal-action">
+                                <form method="dialog">
+                                    {/* if there is a button in form, it will close the modal */}
+                                    <button className="btn">Close</button>
+                                </form>
+                            </div>
+                        </div>
+                    </dialog>
+                    {/*login btn end*/}
                 </div>
             </div>
 
