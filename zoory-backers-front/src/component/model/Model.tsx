@@ -15,6 +15,7 @@ const Model = () => {
     const onSubmit = (data) => console.log(data)
 
     {/*end react hook form*/}
+    // @ts-ignore
     return (
         <dialog id="my_modal_5" className="modal modal-middle sm:modal-middle">
             <div className="modal-box">
@@ -56,7 +57,12 @@ const Model = () => {
                         </div>
                         {/*end login button*/}
 
-                        <p className="text-center my-2">Do not have an account ? <Link to="/signup" className="underline text-red ml-1">signup now</Link></p>
+                        <p className="text-center my-2">Do not have an account ? <Link to="/signup" className="underline text-red ml-1">signup now</Link>{""}</p>
+
+                        <button
+                           htmlFor="my_modal_5"
+                           onClick={()=>document.getElementById('my_modal_5').close()}
+                            className="btn btn-sm btn-circle btn-ghost absolute right-2 top-2">✕</button>
                     </form>
                     {/*end Form Section*/}
 
