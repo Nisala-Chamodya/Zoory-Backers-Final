@@ -1,6 +1,7 @@
 import logo from '../../../public/logo.png';
-import { BiPhoneCall } from "react-icons/bi";
+
 import {useEffect, useState} from "react";
+import { FaUser } from "react-icons/fa6";
 
 
 
@@ -101,10 +102,10 @@ const Navbar = () => {
 
                     {/*end btn cart*/}
                     {/*contact btn start*/}
-                    <a className="flex items-center gap-2 px-5 mr-32 rounded-full btn bg-[#FF9800] text-slate-100">
-                        <BiPhoneCall style={{ backgroundColor: '#FF9800' }} />
-                        Contact
-                    </a>
+                    <button className="flex items-center gap-2 px-5 mr-32 rounded-full btn bg-[#FF9800] text-slate-100">
+                        <FaUser className="bg-[#FF9800]"/>
+                        Login
+                    </button>
                     {/*contact btn end*/}
                 </div>
             </div>
