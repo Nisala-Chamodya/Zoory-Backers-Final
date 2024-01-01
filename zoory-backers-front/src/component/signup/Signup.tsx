@@ -1,4 +1,4 @@
-import {Link} from "react-router-dom";
+import {Link, useLocation, useNavigate} from "react-router-dom";
 import {FaFacebookF, FaGithub, FaGoogle} from "react-icons/fa";
 import {useForm} from "react-hook-form";
 import Model from "../model/Model.tsx";
@@ -19,6 +19,17 @@ const Signup = () => {
     const {createUser,login} =useContext(AuthContext);
      {/*end manage auth provider */}
 
+       {/* start rederecting to home page or specific page */}
+        const location = useLocation();
+        const navigate= useNavigate();
+
+        const from =location.state?.from?.pathname || "/";
+      
+      {/* end rederecting to home page or specific page*/}
+
+
+
+
     const onSubmit = (data) =>{
         const email= data.email;
         const password=data.password;
@@ -27,6 +38,8 @@ const Signup = () => {
     // Signed up 
     const user = result.user;
     alert("Account Creation Successfull done");
+     document.getElementById('my_modal_5').close()
+        navigate(from,{replace:true})
     // ...
   })
   .catch((error) => {

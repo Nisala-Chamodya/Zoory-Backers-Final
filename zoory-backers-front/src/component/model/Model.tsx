@@ -1,4 +1,4 @@
-import { Link } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import {FaFacebookF, FaGithub, FaGoogle} from "react-icons/fa";
 import {useForm} from "react-hook-form";
 import { useContext, useState } from "react";
@@ -23,6 +23,14 @@ const Model = () => {
       const [errorMessage,setErrorMessage]=useState("");
       {/*end manage auth provider */}
 
+      {/* start rederecting to home page or specific page */}
+        const location = useLocation();
+        const navigate= useNavigate();
+
+        const from =location.state?.from?.pathname || "/";
+      
+      {/* end rederecting to home page or specific page*/}
+
 
     const onSubmit = (data) => {
         const email= data.email;
@@ -31,7 +39,8 @@ const Model = () => {
       login(email,password).then((result) =>{
         const user=result.user;
         alert("Login successfull");
-        
+        document.getElementById('my_modal_5').close()
+        navigate(from,{replace:true})
       }).catch((error) => {
         const errorMessage =error.message;
         setErrorMessage("Provide a correct email and password");
@@ -44,6 +53,8 @@ const Model = () => {
         signUpWithGmail().then((result)=>{
             const user=result.user;
             alert("Login Successfull !!");
+            document.getElementById('my_modal_5').close();
+            navigate(from,{replace:true})
         }).catch((error) => console.log(error))
        }
        {/*end manage google sign in */}
