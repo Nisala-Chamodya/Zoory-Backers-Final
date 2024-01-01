@@ -1,6 +1,10 @@
 import { Link } from "react-router-dom";
 import {FaFacebookF, FaGithub, FaGoogle} from "react-icons/fa";
 import {useForm} from "react-hook-form";
+import {useContext, useState} from "react";
+import { AuthContext } from "../../contexts/AuthProvider.tsx";
+import {Simulate} from "react-dom/test-utils";
+import error = Simulate.error;
 
 
 const Model = () => {
@@ -12,7 +16,30 @@ const Model = () => {
         formState: { errors },
     } = useForm();
 
-    const onSubmit = (data) => console.log(data)
+    const {signUpWithGmail,login} =useContext(AuthContext);
+    const [errorMessage,setErrorMessage]=useState("")
+
+    const onSubmit = (data) => {
+        const email=data.email;
+        const password=data.password;
+      //  console.log(email,password)
+        login(email,password).then((result) =>{
+            const user =result.user;
+            alert("Login successful");
+        }).catch((error) =>{
+            const errorMessage=error.message;
+            setErrorMessage("Provide a correct email and password")
+        })
+    }
+
+    //google sign in
+    const handleLogin= () =>{
+        signUpWithGmail().then((result) =>{
+            const user=result.user;
+            alert("Login Successfull");
+        }).catch((error) => console.log(error))
+
+    }
 
     {/*end react hook form*/}
     // @ts-ignore
@@ -20,11 +47,11 @@ const Model = () => {
         <dialog id="my_modal_5" className="modal modal-middle sm:modal-middle">
             <div className="modal-box">
 
-                <div className="modal-action flex flex-col justify-center mt-0">
+                <div className="flex flex-col justify-center mt-0 modal-action">
 
                     {/*start Form Section*/}
                     <form onSubmit={handleSubmit(onSubmit)} className="card-body " method="dialog">
-                        <h3 className="font-bold text-lg">Please Login</h3>
+                        <h3 className="text-lg font-bold">Please Login</h3>
 
                         {/*start emai*/}
                         <div className="form-control">
@@ -41,7 +68,7 @@ const Model = () => {
                                 <span className="label-text">Password</span>
                             </label>
                             <input type="password" placeholder="password" className="input input-bordered" {...register("password")} />
-                            <label className="label mt-1">
+                            <label className="mt-1 label">
                                 <a href="#" className="label-text-alt link link-hover">Forgot password?</a>
                             </label>
                         </div>
@@ -49,26 +76,28 @@ const Model = () => {
 
 
                         {/*start error text*/}
-
+                        {
+                            errorMessage ? <p className="text-red text-xs italic">{setErrorMessage()}</p>:""
+                        }
                         {/*end error text*/}
                         {/*start login button*/}
-                        <div className="form-control mt-6">
+                        <div className="mt-6 form-control">
                             <input type="submit" value="Login" className="btn bg-[#FF9800] text-white"/>
                         </div>
                         {/*end login button*/}
 
-                        <p className="text-center my-2">Do not have an account ? <Link to="/signup" className="underline text-red ml-1">signup now</Link>{""}</p>
+                        <p className="my-2 text-center">Do not have an account ? <Link to="/signup" className="ml-1 underline text-red">signup now</Link>{""}</p>
 
                         <button
                            htmlFor="my_modal_5"
                            onClick={()=>document.getElementById('my_modal_5').close()}
-                            className="btn btn-sm btn-circle btn-ghost absolute right-2 top-2">✕</button>
+                            className="absolute btn btn-sm btn-circle btn-ghost right-2 top-2">✕</button>
                     </form>
                     {/*end Form Section*/}
 
                     {/*start log with social media*/}
-                    <div className="text-center space-x-5 mb-5">
-                        <button className="btn btn-circle hover:bg-orange">
+                    <div className="mb-5 space-x-5 text-center">
+                        <button className="btn btn-circle hover:bg-orange" onClick={handleLogin}>
                             <FaGoogle />
                         </button>
                         <button className="btn btn-circle hover:bg-orange">
