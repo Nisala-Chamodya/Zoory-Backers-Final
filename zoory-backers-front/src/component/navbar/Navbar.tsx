@@ -1,9 +1,10 @@
 import logo from '../../../public/logo.png';
 
-import {useContext, useEffect, useState} from "react";
+import { useContext, useEffect, useState} from "react";
 import { FaUser } from "react-icons/fa6";
 import Model from "../model/Model.tsx";
-import {AuthContext} from "../../contexts/AuthProvider.tsx";
+import { AuthContext } from '../../contexts/AuthProvider.tsx';
+
 
 
 
@@ -12,8 +13,9 @@ const Navbar = () => {
     //start handle scroll
     const [isSticky, setSticky] = useState(false);
 
-    const {user}=useContext(AuthContext);
-    console.log(user)
+   const {user}=useContext(AuthContext)
+   console.log(user);
+   
 
     useEffect(() => {
         // Define the scroll event handler
@@ -62,7 +64,7 @@ const Navbar = () => {
 
     </>
     return (
-        <header className="max-w-screen-2xl container mx-auto fixed top-0 left-0 right-0 transition-all duration-300 ease-in-out" >
+        <header className="container fixed top-0 left-0 right-0 mx-auto transition-all duration-300 ease-in-out max-w-screen-2xl" >
             <div className={`navbar x1:px-24 ${isSticky ? "shadow-md bg-base-100 transition-all duration-300 ease-in-out" : ""}`}>
                 <div className="navbar-start">
                     <div className="dropdown">

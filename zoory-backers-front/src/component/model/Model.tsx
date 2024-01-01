@@ -1,10 +1,12 @@
 import { Link } from "react-router-dom";
 import {FaFacebookF, FaGithub, FaGoogle} from "react-icons/fa";
 import {useForm} from "react-hook-form";
-import {useContext, useState} from "react";
-import { AuthContext } from "../../contexts/AuthProvider.tsx";
-import {Simulate} from "react-dom/test-utils";
-import error = Simulate.error;
+import { useContext } from "react";
+import { AuthContext } from "../../contexts/AuthProvider";
+
+
+
+
 
 
 const Model = () => {
@@ -16,30 +18,22 @@ const Model = () => {
         formState: { errors },
     } = useForm();
 
-    const {signUpWithGmail,login} =useContext(AuthContext);
-    const [errorMessage,setErrorMessage]=useState("")
+      {/* start manage authprovider*/}
+      const {signUpWithGmail} =useContext(AuthContext)
+      {/*end manage auth provider */}
 
-    const onSubmit = (data) => {
-        const email=data.email;
-        const password=data.password;
-      //  console.log(email,password)
-        login(email,password).then((result) =>{
-            const user =result.user;
-            alert("Login successful");
-        }).catch((error) =>{
-            const errorMessage=error.message;
-            setErrorMessage("Provide a correct email and password")
-        })
-    }
 
-    //google sign in
-    const handleLogin= () =>{
-        signUpWithGmail().then((result) =>{
+    const onSubmit = (data) => console.log(data);
+
+       {/*start manage google sign in */}
+       const handleLogin =() =>{
+        signUpWithGmail().then((result)=>{
             const user=result.user;
-            alert("Login Successfull");
+            alert("Login Successfull !!");
         }).catch((error) => console.log(error))
+       }
+       {/*end manage google sign in */}
 
-    }
 
     {/*end react hook form*/}
     // @ts-ignore
@@ -76,9 +70,7 @@ const Model = () => {
 
 
                         {/*start error text*/}
-                        {
-                            errorMessage ? <p className="text-red text-xs italic">{setErrorMessage()}</p>:""
-                        }
+
                         {/*end error text*/}
                         {/*start login button*/}
                         <div className="mt-6 form-control">
@@ -97,7 +89,7 @@ const Model = () => {
 
                     {/*start log with social media*/}
                     <div className="mb-5 space-x-5 text-center">
-                        <button className="btn btn-circle hover:bg-orange" onClick={handleLogin}>
+                        <button className="btn btn-circle hover:bg-orange" onClick={handleLogin} >
                             <FaGoogle />
                         </button>
                         <button className="btn btn-circle hover:bg-orange">

@@ -3,7 +3,7 @@ import {FaFacebookF, FaGithub, FaGoogle} from "react-icons/fa";
 import {useForm} from "react-hook-form";
 import Model from "../model/Model.tsx";
 import {useContext} from "react";
-import {AuthContext} from "../../contexts/AuthProvider.tsx";
+
 
 const Signup = () => {
     {/*start react hook form*/}
@@ -22,7 +22,7 @@ const Signup = () => {
         createUser(email,password) .then((result) => {
             // Signed up
             const user = result.user;
-            alert("Account Creation Successfully Done")
+            alert("Account Creation Successfully Done");
             // ...
         })
             .catch((error) => {
@@ -34,13 +34,13 @@ const Signup = () => {
 
     {/*end react hook form*/}
     return (
-        <div className="max-w-md bg-white shadow w-full mx-auto flex items-center justify-center my-20">
+        <div className="flex items-center justify-center w-full max-w-md mx-auto my-20 bg-white shadow">
             {/*start sign up form*/}
-            <div className="modal-action flex flex-col justify-center mt-0">
+            <div className="flex flex-col justify-center mt-0 modal-action">
 
             {/*start Form Section*/}
             <form onSubmit={handleSubmit(onSubmit)} className="card-body " method="dialog">
-                <h3 className="font-bold text-lg">Create a Account</h3>
+                <h3 className="text-lg font-bold">Create a Account</h3>
 
                 {/*start emai*/}
                 <div className="form-control">
@@ -57,7 +57,7 @@ const Signup = () => {
                         <span className="label-text">Password</span>
                     </label>
                     <input type="password" placeholder="password" className="input input-bordered" {...register("password")} />
-                    <label className="label mt-1">
+                    <label className="mt-1 label">
                         <a href="#" className="label-text-alt link link-hover">Forgot password?</a>
                     </label>
                 </div>
@@ -68,23 +68,23 @@ const Signup = () => {
 
                 {/*end error text*/}
                 {/*start login button*/}
-                <div className="form-control mt-6">
+                <div className="mt-6 form-control">
                     <input type="submit" value="Signup" className="btn bg-[#FF9800] text-white"/>
                 </div>
                 {/*end login button*/}
 
-                <p className="text-center my-2"> Have an account {" "} <button  className="underline text-red ml-1"
+                <p className="my-2 text-center"> Have an account {" "} <button  className="ml-1 underline text-red"
                                                                                 onClick={()=>document.getElementById('my_modal_5').showModal()}
                 >Login</button>{""}</p>
 
                 <Link
                     to="/"
-                    className="btn btn-sm btn-circle btn-ghost absolute right-2 top-2">✕</Link>
+                    className="absolute btn btn-sm btn-circle btn-ghost right-2 top-2">✕</Link>
             </form>
             {/*end Form Section*/}
 
             {/*start log with social media*/}
-            <div className="text-center space-x-5 mb-5">
+            <div className="mb-5 space-x-5 text-center">
                 <button className="btn btn-circle hover:bg-orange">
                     <FaGoogle />
                 </button>

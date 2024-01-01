@@ -1,83 +1,81 @@
-import {createContext, useEffect, useState} from "react";
-import { signInWithEmailAndPassword,GoogleAuthProvider,createUserWithEmailAndPassword,getAuth, updateProfile, signInWithPopup, onAuthStateChanged, signOut } from "firebase/auth";
-import app from "../firebase/firebase.config";
-
-
+import {  createContext, useEffect, useState } from "react";
+import { GoogleAuthProvider, createUserWithEmailAndPassword, getAuth, onAuthStateChanged, signInWithEmailAndPassword, signInWithPopup, signOut, updateProfile } from "firebase/auth";
+import app from "../firebase/firebase.config"
 
 export const AuthContext =createContext();
+// Initialize Firebase Authentication and get a reference to the service
 const auth = getAuth(app);
 const googleProvider = new GoogleAuthProvider();
+
+
+
 const AuthProvider = ({children}) => {
     const [user,setUser]=useState(null);
-    const[loading,setLoading]=useState(true);
+     const[loading,setLoading]=useState(true);
 
-    {/*start crate an account*/}
-   const createUser=(email,password)=>{
-        return createUserWithEmailAndPassword(auth, email, password)
+     {/*start create an acc*/}
+     const createUser =(email,password)=>{
+      return createUserWithEmailAndPassword(auth, email, password)
+  
+     }
+     {/*end create an acc*/ }
 
-   }
-    {/*end create an account*/}
+     {/*start signup*/}
+     const signUpWithGmail = ()=>{
+        return  signInWithPopup(auth, googleProvider)
+     }
+     {/*end sign up*/ }
 
-    {/*start sign up with gmail*/}
-    const signUpWithGmail =()=>{
-    return    signInWithPopup(auth, googleProvider)
-    }
-    {/*end sign up with gmail*/}
+     {/*start login using email and password */}
+     const login = (email,password) =>{
+     return signInWithEmailAndPassword(auth, email, password);
+     }
+      {/*end login using email and password */}
 
-    {/*start login using email & password*/}
-    const login =(email,password)=>{
-      return   signInWithEmailAndPassword(auth,email,password);
+        {/*start log out functionality */}
+         const logOut = () =>{
+          signOut(auth)
+         }
+        {/* end logout functionality */}
 
-    }
-    {/*end login using email & password*/}
+        {/*start update profile */}
+        const updateuserProfile = ({name,photoURL}) =>{
+      return    updateProfile(auth.currentUser, {
+  displayName: name, photoURL: photoURL
+})
+        }
+        {/*end update profile */}
 
-    {/*start log out function*/}
-    const logOut =() =>{
-        signOut(auth)
-    }
-    {/*end logout function*/}
 
-    {/*start update profile*/}
-    const updateuserProfile =({name,photoURL})=>{
-       return updateProfile(auth.currentUser, {
-            displayName: name, photoURL: photoURL
-        })
-
-    }
-    {/*end update profile*/}
-
-    {/*start check sign-in-user*/}
-    useEffect(() =>{
-    const unsubscribe=  onAuthStateChanged(auth, (currentUser) => {
+        {/* start check signin user */}
+        useEffect(()=>{
+          const unsubscribe=onAuthStateChanged(auth, (currentUser) => {
   if (currentUser) {
     setUser(currentUser);
-    setLoading(false);
-   
+    setLoading(false)
   } else {
     // User is signed out
     // ...
   }
 })
-return ()=>{
-    return unsubscribe();
+return () =>{
+  return unsubscribe();
 }
-    },[])
-
-    {/*end  check sign in users*/}
-
-    const authInfo ={
+        },[])
+        {/*end check signin user */}
+   const authInfo={
         user,
         createUser,
         signUpWithGmail,
         login,
         logOut,
         updateuserProfile
-    }
-    return (
-        <AuthContext.Provider value={authInfo}>
-            {children}
-        </AuthContext.Provider>
-    );
-};
+   }
+  return (
+    <AuthContext.Provider value={authInfo}>
+        {children}
+    </AuthContext.Provider>
+  )
+}
 
-export default AuthProvider;
+export default AuthProvider
