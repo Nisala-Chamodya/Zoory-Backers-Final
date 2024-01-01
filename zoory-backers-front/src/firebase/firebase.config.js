@@ -3,14 +3,16 @@ import { initializeApp } from "firebase/app";
 // TODO: Add SDKs for Firebase products that you want to use
 // https://firebase.google.com/docs/web/setup#available-libraries
 
+//console.log(import.meta.env.VITE_SOME_KEY) // 123
+
 // Your web app's Firebase configuration
 const firebaseConfig = {
-    apiKey: "AIzaSyB0RxPxQbDZI4YVTToxvyBnpHgNnBJjNw8",
-    authDomain: "zoory-backers-front.firebaseapp.com",
-    projectId: "zoory-backers-front",
-    storageBucket: "zoory-backers-front.appspot.com",
-    messagingSenderId: "986058762591",
-    appId: "1:986058762591:web:ff35caf7c67867e7302eea"
+    apiKey: import.meta.env.VITE_APIKEY,
+    authDomain: import.meta.env.VITE_AUTHDOMAIN,
+    projectId: import.meta.env.VITE_PROJECTID,
+    storageBucket:import.meta.env.VITE_STORAGEBUCKET,
+    messagingSenderId: import.meta.env.VITE_MESSAGINGSENDERID,
+    appId:import.meta.env.VITE_APPID
 };
 
 // Initialize Firebase
