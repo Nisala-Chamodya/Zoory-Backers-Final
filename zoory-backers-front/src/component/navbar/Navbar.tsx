@@ -1,8 +1,9 @@
 import logo from '../../../public/logo.png';
 
-import {useEffect, useState} from "react";
+import {useContext, useEffect, useState} from "react";
 import { FaUser } from "react-icons/fa6";
 import Model from "../model/Model.tsx";
+import {AuthContext} from "../../contexts/AuthProvider.tsx";
 
 
 
@@ -10,6 +11,9 @@ import Model from "../model/Model.tsx";
 const Navbar = () => {
     //start handle scroll
     const [isSticky, setSticky] = useState(false);
+
+    const {user}=useContext(AuthContext);
+    console.log(user)
 
     useEffect(() => {
         // Define the scroll event handler
