@@ -3,6 +3,7 @@ import {FaFacebookF, FaGithub, FaGoogle} from "react-icons/fa";
 import {useForm} from "react-hook-form";
 import Model from "../model/Model.tsx";
 import {useContext} from "react";
+import { AuthContext } from "../../contexts/AuthProvider.tsx";
 
 
 const Signup = () => {
@@ -13,23 +14,26 @@ const Signup = () => {
 
         formState: { errors },
     } = useForm();
-
+     
+    {/*start manage auth provider */}
     const {createUser,login} =useContext(AuthContext);
+     {/*end manage auth provider */}
 
-    const onSubmit = (data) => {
-        const email=data.email;
+    const onSubmit = (data) =>{
+        const email= data.email;
         const password=data.password;
-        createUser(email,password) .then((result) => {
-            // Signed up
-            const user = result.user;
-            alert("Account Creation Successfully Done");
-            // ...
-        })
-            .catch((error) => {
-                const errorCode = error.code;
-                const errorMessage = error.message;
-                // ..
-            })
+
+        createUser(email,password).then((result) => {
+    // Signed up 
+    const user = result.user;
+    alert("Account Creation Successfull done");
+    // ...
+  })
+  .catch((error) => {
+    const errorCode = error.code;
+    const errorMessage = error.message;
+    // ..
+  })
     }
 
     {/*end react hook form*/}

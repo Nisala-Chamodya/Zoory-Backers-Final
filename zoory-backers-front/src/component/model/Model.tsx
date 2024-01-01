@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom";
 import {FaFacebookF, FaGithub, FaGoogle} from "react-icons/fa";
 import {useForm} from "react-hook-form";
-import { useContext } from "react";
+import { useContext, useState } from "react";
 import { AuthContext } from "../../contexts/AuthProvider";
 
 
@@ -19,11 +19,25 @@ const Model = () => {
     } = useForm();
 
       {/* start manage authprovider*/}
-      const {signUpWithGmail} =useContext(AuthContext)
+      const {signUpWithGmail,login} =useContext(AuthContext);
+      const [errorMessage,setErrorMessage]=useState("");
       {/*end manage auth provider */}
 
 
-    const onSubmit = (data) => console.log(data);
+    const onSubmit = (data) => {
+        const email= data.email;
+        const password=data.password;
+      //  console.log(email,password)
+      login(email,password).then((result) =>{
+        const user=result.user;
+        alert("Login successfull");
+        
+      }).catch((error) => {
+        const errorMessage =error.message;
+        setErrorMessage("Provide a correct email and password");
+        
+      })
+    }
 
        {/*start manage google sign in */}
        const handleLogin =() =>{
@@ -70,6 +84,9 @@ const Model = () => {
 
 
                         {/*start error text*/}
+                        {
+                            errorMessage ? <p className="text-xs italic text-red">{errorMessage}</p> : " "
+                        }
 
                         {/*end error text*/}
                         {/*start login button*/}
