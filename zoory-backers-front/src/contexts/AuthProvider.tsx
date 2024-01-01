@@ -69,7 +69,8 @@ return () =>{
         signUpWithGmail,
         login,
         logOut,
-        updateuserProfile
+        updateuserProfile,
+        loading
    }
   return (
     <AuthContext.Provider value={authInfo}>
