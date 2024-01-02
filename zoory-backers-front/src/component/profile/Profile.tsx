@@ -1,21 +1,23 @@
+import { useContext } from "react";
+import { AuthContext } from "../../contexts/AuthProvider";
 import { getAuth, signOut } from "firebase/auth";
 
 
-
 const Profile = ({user}) => {
-
   {/*start logout in gmail */}
+  const {logout} = useContext(AuthContext) 
   const auth = getAuth();
    const handleLogout = () =>{
-      signOut(auth).then(() => {
+  
+    signOut(auth).then(() => {
   // Sign-out successful.
-     alert("sign out");
+  alert("logout");
   
 }).catch((error) => {
   // An error happened.
+  alert(error);
 });
-      
-    
+
    }
   {/*end logout in gmail */}
 

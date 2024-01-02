@@ -4,17 +4,19 @@ import { Navigate, useLocation } from "react-router-dom";
 
 
 
+
 const PrivateRouter = ({children}) => {
   const {user,loading}=useContext(AuthContext);
   const location=useLocation();
   
   if(loading){
     return(
-     <>loading</>
+   //  <LoadingSpinner/>
+   <>loading</>
     )
   }
   if(user){
-    return children
+    return children;
   }
 
   return (
@@ -22,4 +24,4 @@ const PrivateRouter = ({children}) => {
   )
 }
 
-export default PrivateRouter
+export default PrivateRouter;

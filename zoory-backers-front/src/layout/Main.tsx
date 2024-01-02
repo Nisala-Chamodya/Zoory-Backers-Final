@@ -11,17 +11,15 @@ const Main = ()=>{
     const {loading} = useContext(AuthContext)
     return(
         <div className="min-h-screen bg-primaryBG">
-            {
-              <div>
+           {
+             <div>
              <Navbar/>
             <Outlet/>
-
             <Footer/>
-
-           </div>
+            </div>
+          
             }
            
-
         </div>
     )
 }

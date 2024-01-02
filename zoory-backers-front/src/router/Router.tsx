@@ -3,7 +3,7 @@ import Main from "../layout/Main.tsx";
 import Home from "../pages/home/Home.tsx";
 import Menu from "../pages/shop/Menu.tsx";
 import Signup from "../component/signup/Signup.tsx";
-import PrivateRouter from "../privaterouter/PrivateRouter.tsx";
+
 
 
 const router = createBrowserRouter([
@@ -17,8 +17,8 @@ const router = createBrowserRouter([
             },
             {
                 path: "/menu",
-                element:<PrivateRouter><Menu/></PrivateRouter>,
-            }
+                element:<Menu/>,
+            },
         ],
     },
     {
