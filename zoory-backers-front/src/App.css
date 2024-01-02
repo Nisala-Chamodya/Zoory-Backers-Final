@@ -5,9 +5,7 @@ body{
    
 
 }
-*{
-    overflow-x: hidden;
-}
+
 header{
     z-index: 10001 !important;
 }

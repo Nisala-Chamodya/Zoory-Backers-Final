@@ -1,6 +1,24 @@
+import { getAuth, signOut } from "firebase/auth";
+
 
 
 const Profile = ({user}) => {
+
+  {/*start logout in gmail */}
+  const auth = getAuth();
+   const handleLogout = () =>{
+      signOut(auth).then(() => {
+  // Sign-out successful.
+     alert("sign out");
+  
+}).catch((error) => {
+  // An error happened.
+});
+      
+    
+   }
+  {/*end logout in gmail */}
+
   return (
     <div>
   {/*start drawair section when click image  in desiui*/}
@@ -23,7 +41,7 @@ const Profile = ({user}) => {
       <li><a>Profile</a></li>
       <li><a>Order</a></li>
        <li><a>Setting</a></li>
-        <li><a>Logout</a></li>
+        <li><a onClick={handleLogout}>Log Out</a></li>
     </ul>
   </div>
 </div>

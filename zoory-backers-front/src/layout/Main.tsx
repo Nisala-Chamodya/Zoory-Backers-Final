@@ -5,14 +5,14 @@ import "../App.css"
 import Footer from "../component/footer/Footer.tsx";
 import { useContext } from "react";
 import { AuthContext } from "../contexts/AuthProvider.tsx";
-import LoadingSpinner from "../component/loadingspinner/LoadingSpinner.tsx";
+
 
 const Main = ()=>{
     const {loading} = useContext(AuthContext)
     return(
         <div className="min-h-screen bg-primaryBG">
             {
-                loading ? <LoadingSpinner/> :<div>
+              <div>
              <Navbar/>
             <Outlet/>
 
