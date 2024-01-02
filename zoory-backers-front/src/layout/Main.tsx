@@ -17,6 +17,8 @@ const Main = ()=>{
             <Outlet/>
             <Footer/>
             </div>
+
+            
           
             }
            

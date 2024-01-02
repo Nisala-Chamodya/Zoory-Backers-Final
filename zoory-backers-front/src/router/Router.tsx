@@ -3,6 +3,7 @@ import Main from "../layout/Main.tsx";
 import Home from "../pages/home/Home.tsx";
 import Menu from "../pages/shop/Menu.tsx";
 import Signup from "../component/signup/Signup.tsx";
+import UpdateProfile from "../pages/dashboard/UpdateProfile.tsx";
 
 
 
@@ -19,6 +20,10 @@ const router = createBrowserRouter([
                 path: "/menu",
                 element:<Menu/>,
             },
+            {
+                path:"/update-profile",
+                element:<UpdateProfile/>
+            }
         ],
     },
     {

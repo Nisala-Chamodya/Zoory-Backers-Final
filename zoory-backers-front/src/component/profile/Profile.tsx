@@ -40,7 +40,7 @@ const Profile = ({user}) => {
     <label htmlFor="my-drawer-4" aria-label="close sidebar" className="drawer-overlay"></label>
     <ul className="min-h-full p-4 menu w-80 bg-base-200 text-base-content">
       {/* Sidebar content here */}
-      <li><a>Profile</a></li>
+      <li><a href="/update-profile">Profile</a></li>
       <li><a>Order</a></li>
        <li><a>Setting</a></li>
         <li><a onClick={handleLogout}>Log Out</a></li>
