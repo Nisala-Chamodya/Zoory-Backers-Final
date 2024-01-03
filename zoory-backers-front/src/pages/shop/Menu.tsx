@@ -16,7 +16,7 @@ const Menu = () => {
         {/*start fetch data from the back end*/}
         const fetchData = async ()=>{
             try{
-                const response=await fetch("/menu.json");
+                const response=await fetch("http://localhost:6001/menu");
                 const data=await response.json();
                 // console.log(data)
                 setMenu(data);
@@ -98,11 +98,11 @@ const Menu = () => {
         <div className="mt-10" >
             {/*start Menu Banner*/}
             <div className="section-container bg-gradient-to-r from-[#FAFAFA] from-0% to-[#FCFCFC] to-100% ">
-                <div className='py-48 flex flex-col  justify-center items-center gap-8'>
+                <div className='flex flex-col items-center justify-center gap-8 py-48'>
 
                     {/*start text*/}
-                    <div className=" text-center space-y-7 px-4">
-                        <h2 className="md:text-5xl text-4xl font-bold md:leading-snug leading-snug">
+                    <div className="px-4 text-center space-y-7">
+                        <h2 className="text-4xl font-bold leading-snug md:text-5xl md:leading-snug">
                             Dive into Delight of Delectable <span className="text-[#FF9800]">Food</span> </h2>
                         <p className="text-xl text-[#4A4A4A] md:w-4/5 mx-auto">Where Each Plate Waves a Story Of Culinary Mastery And
                             Passionate Craftsmanship</p>
@@ -120,8 +120,8 @@ const Menu = () => {
             {/*start menu shop section*/}
             <div className="section-container">
                 {/*start filtering and sorting*/}
-                <div className="flex flex-col md:flex-row flex-wrap md:justify-between items-center space-y-3 mb-8">
-                    <div className="flex flex-row justify-start md:items-center md:gap-8 gap-4 flex-wrap">
+                <div className="flex flex-col flex-wrap items-center mb-8 space-y-3 md:flex-row md:justify-between">
+                    <div className="flex flex-row flex-wrap justify-start gap-4 md:items-center md:gap-8">
                         {/*all categories btns*/}
                         <button onClick={showAll}
                                 className={selectedCategory === "all" ? "active" : ""}
@@ -146,15 +146,15 @@ const Menu = () => {
 
                     {/*start sorting base filtering*/}
                     <div className="flex justify-end mb-4 rounded-sm">
-                        <div className=" bg-black p-2">
-                            <FaFilter className="h-4 w-4 text-white"/>
+                        <div className="p-2 bg-black ">
+                            <FaFilter className="w-4 h-4 text-white"/>
                         </div>
 
                         {/*start sorting option button*/}
                         <select name="sort" id="sort"
                                 onChange={(e) =>handleSortChange(e.target.value)}
                                 value={sortOption}
-                                className="bg-black text-white px-2 py-1 rounded-sm" >
+                                className="px-2 py-1 text-white bg-black rounded-sm" >
                             <option value="default">Default</option>
                             <option value="A-Z">A-Z</option>
                             <option value="Z-A">Z-A</option>
@@ -170,7 +170,7 @@ const Menu = () => {
                 {/*end filtering and sorting*/}
 
                 {/*start product cards*/}
-                <div className="grid md:grid-cols-3 sm:grid-cols-2 grid-cols-1 gap-4">
+                <div className="grid grid-cols-1 gap-4 md:grid-cols-3 sm:grid-cols-2">
                     {
                         currentItems.map((item) =>(
                             <Cards key={item._id} item={item}/>

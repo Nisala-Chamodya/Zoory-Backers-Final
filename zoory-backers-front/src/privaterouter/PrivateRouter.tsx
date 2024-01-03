@@ -11,8 +11,8 @@ const PrivateRouter = ({children}) => {
   
   if(loading){
     return(
-   //  <LoadingSpinner/>
-   <>loading</>
+    <LoadingSpinner/>
+   
     )
   }
   if(user){
