@@ -4,6 +4,7 @@ import Home from "../pages/home/Home.tsx";
 import Menu from "../pages/shop/Menu.tsx";
 import Signup from "../component/signup/Signup.tsx";
 import UpdateProfile from "../pages/dashboard/UpdateProfile.tsx";
+import CartPage from "../pages/shop/CartPage.tsx";
 
 
 
@@ -19,6 +20,10 @@ const router = createBrowserRouter([
             {
                 path: "/menu",
                 element:<Menu/>,
+            },
+            {
+                path:"/cart-page",
+                element:<CartPage/>
             },
             {
                 path:"/update-profile",
