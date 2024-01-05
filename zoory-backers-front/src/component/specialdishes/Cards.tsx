@@ -1,4 +1,4 @@
-import {Link} from "react-router-dom";
+import {Link, useLocation, useNavigate} from "react-router-dom";
 import {useContext, useState} from "react";
 import {FaHeart} from "react-icons/fa";
 import { AuthContext } from "../../contexts/AuthProvider";
@@ -12,6 +12,11 @@ const Cards = ({item}) => {
     //start config user
     const{user} =useContext(AuthContext);
    // console.log(user);
+
+   {/*start don,t have an account */}
+   const navigate=useNavigate();
+   const location=useLocation();
+   {/*end don't have an account */}
     
 
     {/*start  add to cart btn*/}
@@ -42,7 +47,21 @@ const Cards = ({item}) => {
             }
         })
      
-     };
+     }else{
+        Swal.fire({
+  title: "Please Login?",
+  text: "Without an account can't able to add products !",
+  icon: "warning",
+  showCancelButton: true,
+  confirmButtonColor: "#3085d6",
+  cancelButtonColor: "#d33",
+  confirmButtonText: "Signup Now!"
+}).then((result) => {
+  if (result.isConfirmed) {
+   navigate('/signup',{state:{from:location}})
+  }
+});
+     }
         
     
      {/*end  add to cart btn*/}
