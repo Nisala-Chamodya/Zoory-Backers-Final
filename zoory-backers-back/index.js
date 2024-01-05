@@ -30,6 +30,32 @@ async function run() {
     try {
         // Connect the client to the server	(optional starting in v4.7)
         await client.connect();
+
+        {/*start database & collections*/}
+        const menuCollections = client.db("zoory-backers-database").collection("menus");
+        const  cartCollections=client.db("zoory-backers-database").collection("cartItems");
+        {/*end database & collections*/}
+
+
+        {/*start all menu items operations*/}
+        app.get('/menu',async (req,res)=>{
+            const result =await menuCollections.find().toArray();
+            res.send(result);
+        })
+        {/*end all menu items operations*/}
+
+
+        {/*start all cart operation*/}
+
+        //posting cart to the db
+        app.post('/carts',async (req,res)=>{
+            const cartItems=req.body;
+            const result=await cartCollections.insertOne(cartItems);
+            res.send(result)
+        })
+        {/*end all cart operation*/}
+
+
         // Send a ping to confirm a successful connection
         await client.db("admin").command({ ping: 1 });
         console.log("Pinged your deployment. You successfully connected to MongoDB!");
