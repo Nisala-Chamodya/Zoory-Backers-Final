@@ -2,6 +2,8 @@ import {Link} from "react-router-dom";
 import {useContext, useState} from "react";
 import {FaHeart} from "react-icons/fa";
 import { AuthContext } from "../../contexts/AuthProvider";
+import Swal from 'sweetalert2'
+
 
 const Cards = ({item}) => {
     const{name,image,price,recipe,_id} =item
@@ -17,9 +19,30 @@ const Cards = ({item}) => {
      //   console.log("handle cart",item);
      if(user && user?.email){
         const cartItem={menuItemId:_id,name,quantiy:1,image,price,email:user.email}
-        console.log(cartItem);
-        
-     }
+        //console.log(cartItem);
+        fetch("http://localhost:6001/carts",{
+            method:"POST",
+            headers:{
+                'content-type':'application/json'
+            },
+            body:JSON.stringify(cartItem)
+            
+            
+        }).then((res) => res.json()).then((data)=>{
+            //console.log(data);
+            if(data.insertedId){
+                Swal.fire({
+                    position: "center",
+                    icon: "success",
+                    title: "The Item Added To The Cart",
+                     showConfirmButton: false,
+                       timer: 1500
+});
+
+            }
+        })
+     
+     };
         
     
      {/*end  add to cart btn*/}
