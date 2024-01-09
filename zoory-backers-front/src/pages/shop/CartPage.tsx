@@ -1,5 +1,10 @@
+import { FaTrash } from "react-icons/fa6";
+import useCart from "../../hooks/useCart"
 
 const CartPage = () => {
+ //hook
+ const [cart,refetch]=useCart();
+
   return (
     <div className="section-container">
            {/*start loading banner */}
@@ -38,31 +43,33 @@ const CartPage = () => {
     </thead>
     <tbody>
       {/* row 1 */}
-      <tr>
-       <td>1</td>
+      {
+        cart.map((item,index)=>(
+          <tr key={index}>
+       <td>{index + 1}</td>
         <td>
           <div className="flex items-center gap-3">
             <div className="avatar">
               <div className="w-12 h-12 mask mask-squircle">
-                <img src="/tailwind-css-component-profile-2@56w.png" alt="Avatar Tailwind CSS Component" />
+                <img src={item.image} alt={item.name} />
               </div>
             </div>
-            <div>
-              <div className="font-bold">Hart Hagerty</div>
-              <div className="text-sm opacity-50">United States</div>
-            </div>
+            
           </div>
         </td>
-        <td>
-          Zemlak, Daniel and Leannon
-          <br/>
-          <span className="badge badge-ghost badge-sm">Desktop Support Technician</span>
+        <td className="font-medium">
+         {item.name}
         </td>
-        <td>Purple</td>
+        <td>{item.quantiy}</td>
+          <td>{item.price}</td>
         <th>
-          <button className="btn btn-ghost btn-xs">details</button>
+          <button className="btn btn-ghost text-red btn-xs">
+            <FaTrash/>
+          </button>
         </th>
       </tr>
+        ))
+      }
       
     </tbody>
    
