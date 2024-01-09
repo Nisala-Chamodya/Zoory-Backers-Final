@@ -62,6 +62,14 @@ async function run() {
             res.send(result)
         })
 
+        //get specific carts
+        app.get('/carts/:id',async (req,res)=>{
+            const id= req.params.id;
+            const filter={_id:new ObjectId(id)};
+            const  result=await cartCollections.findOne(filter);
+            res.send(result);
+        })
+
         //delete item from cart
         app.delete('/carts/:id',async (req,res) => {
             const id =req.params.id;
