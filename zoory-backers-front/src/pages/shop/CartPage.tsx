@@ -1,10 +1,13 @@
 import { FaTrash } from "react-icons/fa6";
 import useCart from "../../hooks/useCart"
 import Swal from "sweetalert2";
+import { useContext } from "react";
+import { AuthContext } from "../../contexts/AuthProvider";
 
 const CartPage = () => {
  //hook
  const [cart,refetch]=useCart();
+ const {user} =useContext(AuthContext);
  {/*start handle delete */}
  const handleDelete = (item) => {
   Swal.fire({
@@ -107,9 +110,26 @@ const CartPage = () => {
 </div>
             {/*end table for the cart */}
 
-          
+          {/*start customer details */}
+          <div className="flex flex-col items-start justify-between my-12 md:flex-row">
+            <div className="space-y-3 md:w-1/2">
+              <h3 className="font-medium">customer details</h3>
+              <p>User_Id : - {user.uid}</p>
+              <p>Name : - {user.displayName}</p>
+              <p>Email : - {user.email}</p>
+            </div>
+             <div className="space-y-3 md:w-1/2">
+              <h3 className="font-medium">Shopping details</h3>
+              <p>Total Items : {cart.length}</p>
+              <p>Total Price : $0.00</p>
+              <button className="text-white btn bg-orange">Proceed Checkout</button>
+              
+         
+             </div>
+          </div>
+          {/*end customer details */}
     </div>
-  )
+  );
 }
 
 export default CartPage
