@@ -53,6 +53,15 @@ async function run() {
             const result=await cartCollections.insertOne(cartItems);
             res.send(result)
         })
+
+        //get carts using email
+        app.get('/carts',async (req,res)=>{
+            const email =req.query.email;
+            const filter={email:email};
+            const result=await cartCollections.find(filter).toArray();
+            res.send(result)
+        })
+
         {/*end all cart operation*/}
 
 
