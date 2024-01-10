@@ -78,6 +78,23 @@ async function run() {
             res.send(result)
         })
 
+        //update carts quantity
+        app.put('/carts/:id',async (req,res) =>{
+            const id =req.params.id;
+            const {quantiy}=req.body;
+            const filter={_id:new ObjectId(id)};
+            const options={upsert:true};
+
+            const updateDoc={
+                $set:{
+                    quantiy:parseInt(quantiy,10)
+                },
+            };
+            const result =await cartCollections.updateOne(filter,updateDoc,options)
+        })
+
+
+
         {/*end all cart operation*/}
 
 
