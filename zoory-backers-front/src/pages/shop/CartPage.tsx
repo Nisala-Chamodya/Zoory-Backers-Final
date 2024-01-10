@@ -1,13 +1,83 @@
 import { FaTrash } from "react-icons/fa6";
 import useCart from "../../hooks/useCart"
 import Swal from "sweetalert2";
-import { useContext } from "react";
+import { useContext, useState } from "react";
 import { AuthContext } from "../../contexts/AuthProvider";
 
 const CartPage = () => {
  //hook
  const [cart,refetch]=useCart();
  const {user} =useContext(AuthContext);
+ const[cartItems,setcartItems]=useState([]);
+
+ {/*start calculate price  */}
+ const calculatePrice= (item)=>{
+  return item.price * item.quantiy
+ }
+
+{/*start handle decrease function*/}
+const handleDecrease=(item) =>{
+ if(item.quantiy>1){
+    fetch(`http://localhost:6001/carts/${item._id}`,{
+  method:"PUT",
+  headers:{
+    "content-type":"application/json; charset=UTF-8"
+  },
+  body: JSON.stringify({quantiy:item.quantiy - 1})
+ }).then(res => res.json()).then(data => {
+  const updatedCart =cartItems.map((cartItem)=>{
+    if(cartItem.id === item.id){
+      return {
+        ...cartItem,
+        quantiy:cartItem.quantiy -1
+      }
+    }
+    return cartItem;
+  })
+  refetch()
+  setcartItems(updatedCart);
+ });
+  refetch();
+ }else{
+  alert("Item can't be Zero");
+ }
+  
+}
+{/*end handle decrease function */}
+
+{/* start handle increase function*/}
+const handleIncrease =(item)=>{
+ // console.log(item._id);
+ fetch(`http://localhost:6001/carts/${item._id}`,{
+  method:"PUT",
+  headers:{
+    "content-type":"application/json; charset=UTF-8"
+  },
+  body: JSON.stringify({quantiy:item.quantiy + 1})
+ }).then(res => res.json()).then(data => {
+  const updatedCart =cartItems.map((cartItem)=>{
+    if(cartItem.id === item.id){
+      return {
+        ...cartItem,
+        quantiy:cartItem.quantiy +1
+      }
+    }
+    return cartItem;
+  })
+  refetch()
+  setcartItems(updatedCart);
+ })
+  refetch();
+}
+{/*end handle increase function */}
+
+{/*start calculate total price */}
+const cartSubTotal =cart.reduce((total,item)=>{
+  return total + calculatePrice(item);
+},0);
+const orderTotal =cartSubTotal;
+{/*end calculate total price */}
+
  {/*start handle delete */}
  const handleDelete = (item) => {
   Swal.fire({
@@ -93,11 +163,12 @@ const CartPage = () => {
          {item.name}
         </td>
         <td>
-          <button className="btn btn-xs">-</button>
-          <input type="number" value={item.quantiy} className="w-10 mx-2 overflow-hidden text-center appearance-none" />
-            <button className="btn btn-xs">+</button>
+          <button className="btn btn-xs" onClick={() => handleDecrease(item)}>-</button>
+          <input type="number" value={item.quantiy} className="w-10 mx-2 overflow-hidden text-center appearance-none"
+          onChange={()=> console.log(item.quantiy)} />
+            <button className="px-2 btn btn-xs" onClick={()=> handleIncrease(item)}>+</button>
         </td>
-          <td>{item.price}</td>
+          <td>${calculatePrice(item).toFixed(2)}</td>
         <th>
           <button className="btn btn-ghost text-red btn-xs" onClick={() => handleDelete(item)}>
             <FaTrash/>
@@ -130,7 +201,7 @@ const CartPage = () => {
         <div className="space-y-3 md:w-1/2">
           <h3 className="font-medium">Shopping details</h3>
           <p>Total Items : {cart.length}</p>
-          <p>Total Price : $0.00</p>
+          <p>Total Price : ${orderTotal.toFixed(2)}</p>
           <button className="text-white btn bg-orange">Proceed Checkout</button>
         </div>
       </div>
