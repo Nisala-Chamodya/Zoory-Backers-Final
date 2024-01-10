@@ -92,7 +92,11 @@ const CartPage = () => {
         <td className="font-medium">
          {item.name}
         </td>
-        <td>{item.quantiy}</td>
+        <td>
+          <button className="btn btn-xs">-</button>
+          <input type="number" value={item.quantiy} className="w-10 mx-2 overflow-hidden text-center appearance-none" />
+            <button className="btn btn-xs">+</button>
+        </td>
           <td>{item.price}</td>
         <th>
           <button className="btn btn-ghost text-red btn-xs" onClick={() => handleDelete(item)}>
