@@ -111,24 +111,25 @@ const CartPage = () => {
             {/*end table for the cart */}
 
           {/*start customer details */}
-          <div className="flex flex-col items-start justify-between my-12 md:flex-row">
-            <div className="space-y-3 md:w-1/2">
-              <h3 className="font-medium">customer details</h3>
-             {/*ds */}
-
+          <div className="flex flex-col items-start justify-between my-12 mt-10 md:flex-row">
+        <div className="space-y-3 md:w-1/2">
+          <h3 className="font-medium">Customer details</h3>
+          {/* Check if user exists before accessing its properties */}
+          {user && (
+            <>
               <p>User_Id : - {user.uid}</p>
               <p>Name : - {user.displayName}</p>
               <p>Email : - {user.email}</p>
-            </div>
-             <div className="space-y-3 md:w-1/2">
-              <h3 className="font-medium">Shopping details</h3>
-              <p>Total Items : {cart.length}</p>
-              <p>Total Price : $0.00</p>
-              <button className="text-white btn bg-orange">Proceed Checkout</button>
-              
-         
-             </div>
-          </div>
+            </>
+          )}
+        </div>
+        <div className="space-y-3 md:w-1/2">
+          <h3 className="font-medium">Shopping details</h3>
+          <p>Total Items : {cart.length}</p>
+          <p>Total Price : $0.00</p>
+          <button className="text-white btn bg-orange">Proceed Checkout</button>
+        </div>
+      </div>
           {/*end customer details */}
     </div>
   );
