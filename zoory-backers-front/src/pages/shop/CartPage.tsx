@@ -18,19 +18,19 @@ const CartPage = () => {
 
 {/*start handle decrease function*/}
 const handleDecrease=(item) =>{
- if(item.quantiy>1){
+ if(item.quantity>1){
     fetch(`http://localhost:6001/carts/${item._id}`,{
   method:"PUT",
   headers:{
     "content-type":"application/json; charset=UTF-8"
   },
-  body: JSON.stringify({quantiy:item.quantiy - 1})
+  body: JSON.stringify({quantity:item.quantity - 1})
  }).then(res => res.json()).then(data => {
   const updatedCart =cartItems.map((cartItem)=>{
     if(cartItem.id === item.id){
       return {
         ...cartItem,
-        quantiy:cartItem.quantiy -1
+        quantity:cartItem.quantity -1
       }
     }
     return cartItem;
@@ -40,7 +40,11 @@ const handleDecrease=(item) =>{
  });
   refetch();
  }else{
-  alert("Item can't be Zero");
+       Swal.fire({
+      title: "Warning!",
+      text: "Quantity can't be Zero",
+      icon: "warning"
+    });
  }
   
 }
@@ -54,13 +58,13 @@ const handleIncrease =(item)=>{
   headers:{
     "content-type":"application/json; charset=UTF-8"
   },
-  body: JSON.stringify({quantiy:item.quantiy + 1})
+  body: JSON.stringify({quantity:item.quantity + 1})
  }).then(res => res.json()).then(data => {
   const updatedCart =cartItems.map((cartItem)=>{
     if(cartItem.id === item.id){
       return {
         ...cartItem,
-        quantiy:cartItem.quantiy +1
+        quantity:cartItem.quantity +1
       }
     }
     return cartItem;

@@ -51,7 +51,7 @@ const Cards = ({item}) => {
             } else {
                  Swal.fire({
                     position: "center",
-                    icon: "error",
+                    icon: "warning",
                     title: "The Item Already Added To The Cart",
                     showConfirmButton: false,
                     timer: 1500
