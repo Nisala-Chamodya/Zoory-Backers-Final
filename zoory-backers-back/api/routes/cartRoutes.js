@@ -5,7 +5,8 @@ const router=express.Router();
 const cartController =require('../controllers/cartController')
 router.get('/',cartController.getCartByEmail);
 router.post('/',cartController.addToCart);
-router.delete('/:id',cartController.deleteCart)
+router.delete('/:id',cartController.deleteCart);
+router.put('/:id',cartController.updateCart);
 
 
 module.exports=router;
