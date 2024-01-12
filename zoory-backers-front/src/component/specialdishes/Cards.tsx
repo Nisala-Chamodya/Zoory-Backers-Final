@@ -20,53 +20,80 @@ const Cards = ({item}) => {
     
 
     {/*start  add to cart btn*/}
-    const handleAddtoCart =(item) =>{
-     //   console.log("handle cart",item);
-     if(user && user?.email){
-        const cartItem={menuItemId:_id,name,quantiy:1,image,price,email:user.email}
-        //console.log(cartItem);
-        fetch("http://localhost:6001/carts",{
-            method:"POST",
-            headers:{
-                'content-type':'application/json'
+    const handleAddtoCart = (item) => {
+    if (user && user?.email) {
+        const cartItem = {
+            
+            menuItemId:String( _id),
+            name:String( item.name),  
+            recipe:String(item.recipe),
+            image: String(item.image),
+             price: Number( item.price),
+            quantity:Number(1) ,
+            email:String( user.email),
+         };  
+          
+          
+        
+        console.log(cartItem);
+        fetch("http://localhost:6001/carts", {
+            method: "POST",
+            headers: {
+                'content-type': 'application/json'
             },
-            body:JSON.stringify(cartItem)
+            body: JSON.stringify(cartItem)
+           
             
-            
-        }).then((res) => res.json()).then((data)=>{
-            //console.log(data);
-            if(data.insertedId){
+        })
+        .then((res) => {
+            if (res.ok) {
+                return res.json();
+            } else {
+                 Swal.fire({
+                    position: "center",
+                    icon: "error",
+                    title: "The Item Already Added To The Cart",
+                    showConfirmButton: false,
+                    timer: 1500
+                });
+                throw new Error(`Failed to add item to cart - ${res.statusText}`);
+               
+               
+            }
+        })
+        .then((data) => {
+            if (data && data.menuItemId) {
                 Swal.fire({
                     position: "center",
                     icon: "success",
                     title: "The Item Added To The Cart",
-                     showConfirmButton: false,
-                       timer: 1500
-});
-
+                    showConfirmButton: false,
+                    timer: 1500
+                });
+            } else {
+                console.error("Unexpected response format:", data);
             }
         })
-     
-     }else{
+        .catch((error) => {
+            console.error(error);
+        });
+    } else {
         Swal.fire({
-  title: "Please Login?",
-  text: "Without an account can't able to add products !",
-  icon: "warning",
-  showCancelButton: true,
-  confirmButtonColor: "#3085d6",
-  cancelButtonColor: "#d33",
-  confirmButtonText: "Signup Now!"
-}).then((result) => {
-  if (result.isConfirmed) {
-   navigate('/signup',{state:{from:location}})
-  }
-});
-     }
-        
-    
-     {/*end  add to cart btn*/}
+            title: "Please Login?",
+            text: "Without an account can't able to add products!",
+            icon: "warning",
+            showCancelButton: true,
+            confirmButtonColor: "#3085d6",
+            cancelButtonColor: "#d33",
+            confirmButtonText: "Signup Now!"
+        }).then((result) => {
+            if (result.isConfirmed) {
+                navigate('/signup', { state: { from: location } });
+            }
+        });
     }
-
+};
+    {/*end add cart button */}
     const handleHeartClicked = () =>{
         setIsHeartFilled(!isHeartFilled)
     }

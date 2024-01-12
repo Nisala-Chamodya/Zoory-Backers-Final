@@ -12,7 +12,8 @@ const CartPage = () => {
 
  {/*start calculate price  */}
  const calculatePrice= (item)=>{
-  return item.price * item.quantiy
+  
+  return item.price * item.quantity
  }
 
 {/*start handle decrease function*/}
@@ -164,8 +165,8 @@ const orderTotal =cartSubTotal;
         </td>
         <td>
           <button className="btn btn-xs" onClick={() => handleDecrease(item)}>-</button>
-          <input type="number" value={item.quantiy} className="w-10 mx-2 overflow-hidden text-center appearance-none"
-          onChange={()=> console.log(item.quantiy)} />
+          <input type="number" value={item.quantity} className="w-10 mx-2 overflow-hidden text-center appearance-none"
+          onChange={()=> console.log(item.quantity)} />
             <button className="px-2 btn btn-xs" onClick={()=> handleIncrease(item)}>+</button>
         </td>
           <td>${calculatePrice(item).toFixed(2)}</td>
