@@ -21,8 +21,11 @@ mongoose.connect(
 {/*end mongodb config using mongoose*/}
 
 {/*start import routes here*/}
-const menuRoutes=require('./api/routes/menuRoutes');
+    const menuRoutes=require('./api/routes/menuRoutes');
+    const cartRoutes=require('./api/routes/cartRoutes')
+
     app.use('/menu',menuRoutes)
+    app.use('/carts',cartRoutes)
 {/*end import routes here*/}
 
 app.get('/', (req, res) => {
