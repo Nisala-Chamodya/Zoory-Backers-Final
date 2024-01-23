@@ -34,7 +34,26 @@ const createUser= async (req,res)=>{
 };
 //end post a New user
 
+
+//start a delete a user
+const deleteUser=async (req,res)=>{
+const userId =req.params.id;
+
+try {
+const deletedUser=await User.findByIdAndDelete(userId);
+//if user not found
+    if (!deletedUser){
+        return res.status(404).json({message:"User Not Found"});
+    }
+    res.status(200).json({message:"User deleted successfully"});
+}catch (error){
+    res.status(500).json({message:error.message});
+}
+};
+//end a delete user
+
 module.exports={
     getAllUsers,
-    createUser
+    createUser,
+    deleteUser
 }
