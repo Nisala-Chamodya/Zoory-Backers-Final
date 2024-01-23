@@ -22,10 +22,12 @@ mongoose.connect(
 
 {/*start import routes here*/}
     const menuRoutes=require('./api/routes/menuRoutes');
-    const cartRoutes=require('./api/routes/cartRoutes')
+    const cartRoutes=require('./api/routes/cartRoutes');
+    const userRoutes=require('./api/routes/UserRoutes');
 
-    app.use('/menu',menuRoutes)
-    app.use('/carts',cartRoutes)
+    app.use('/menu',menuRoutes);
+    app.use('/carts',cartRoutes);
+    app.use('/users',userRoutes);
 {/*end import routes here*/}
 
 app.get('/', (req, res) => {
