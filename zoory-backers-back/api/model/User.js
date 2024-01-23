@@ -20,3 +20,5 @@ const userSchema=new Schema({
 
 //create a model instance
 const User=mongoose.model('User',userSchema);
+
+module.exports=User;
