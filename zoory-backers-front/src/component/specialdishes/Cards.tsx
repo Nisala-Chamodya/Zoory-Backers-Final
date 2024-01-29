@@ -114,7 +114,7 @@ const Cards = ({item}) => {
                </Link>
                 <div className="card-body">
                    <Link to={`/menu/${item._id}`}> <h2 className="card-title">{item.name}</h2></Link>
-                    <p>Description of the item</p>
+                    <p>{item.recipe}</p>
                     <div className="items-center justify-between mt-2 card-actions">
                         <h5 className="font-semibold"><span className="text-sm text-red">R.S.</span> {item.price}</h5>
                         <button className="btn bg-[#FF9800] text-white" onClick={() => handleAddtoCart(item)}>Add to Cart</button>

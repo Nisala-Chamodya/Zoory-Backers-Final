@@ -126,20 +126,20 @@ const Menu = () => {
                         <button onClick={showAll}
                                 className={selectedCategory === "all" ? "active" : ""}
                         >All</button>
-                        <button onClick={() => filterItems("salad")}
-                                className={selectedCategory === "salad" ? "active" : ""}
+                        <button onClick={() => filterItems("bun")}
+                                className={selectedCategory === "bun" ? "active" : ""}
                         >Buns</button>
+                        <button onClick={() => filterItems("rice")}
+                                className={selectedCategory === "rice" ? "active" : ""}
+                        >Rise</button>
+                        <button onClick={() => filterItems("kotthu")}
+                                className={selectedCategory === "kotthu" ? "active" : ""}
+                        >kotthu</button>
                         <button onClick={() => filterItems("pizza")}
                                 className={selectedCategory === "pizza" ? "active" : ""}
-                        >Rise</button>
-                        <button onClick={() => filterItems("soup")}
-                                className={selectedCategory === "soup" ? "active" : ""}
-                        >kotthu</button>
-                        <button onClick={() => filterItems("dessert")}
-                                className={selectedCategory === "dessert" ? "active" : ""}
                         >pizza</button>
-                        <button onClick={() => filterItems("drinks")}
-                                className={selectedCategory === "drinks" ? "active" : ""}
+                        <button onClick={() => filterItems("deserts")}
+                                className={selectedCategory === "deserts" ? "active" : ""}
                         >Deserts</button>
 
                     </div>
