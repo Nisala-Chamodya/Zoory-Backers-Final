@@ -173,7 +173,7 @@ const orderTotal =cartSubTotal;
           onChange={()=> console.log(item.quantity)} />
             <button className="px-2 btn btn-xs" onClick={()=> handleIncrease(item)}>+</button>
         </td>
-          <td>${calculatePrice(item).toFixed(2)}</td>
+          <td>R.S {calculatePrice(item).toFixed(2)}</td>
         <th>
           <button className="btn btn-ghost text-red btn-xs" onClick={() => handleDelete(item)}>
             <FaTrash/>
@@ -206,7 +206,7 @@ const orderTotal =cartSubTotal;
         <div className="space-y-3 md:w-1/2">
           <h3 className="font-medium">Shopping details</h3>
           <p>Total Items : {cart.length}</p>
-          <p>Total Price : ${orderTotal.toFixed(2)}</p>
+          <p>Total Price : R.S {orderTotal.toFixed(2)}</p>
           <button className="text-white btn bg-orange">Proceed Checkout</button>
         </div>
       </div>
