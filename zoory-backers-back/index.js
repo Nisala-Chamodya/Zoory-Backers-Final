@@ -3,6 +3,7 @@ const app = express();
 const cors=require('cors')
 const port = process.env.PORT || 6001
 const mongoose = require('mongoose');
+const jwt = require('jsonwebtoken');
 require('dotenv').config()
 
 {/*start middleware*/}

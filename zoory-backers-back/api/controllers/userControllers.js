@@ -59,7 +59,7 @@ const query={email:email}
 
     try {
     const user=await User.findOne(query);
-        console.log(user)
+     //   console.log(user)
     if (email !== req.decoded.email){
         return res.status(403).send({message:"Forbidden Access"})
     }
