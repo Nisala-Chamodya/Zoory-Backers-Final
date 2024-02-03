@@ -6,6 +6,8 @@ const mongoose = require('mongoose');
 const jwt = require('jsonwebtoken');
 require('dotenv').config()
 
+
+
 {/*start middleware*/}
     app.use(cors());
     app.use(express.json())
@@ -20,6 +22,17 @@ mongoose.connect(
 ).catch((error) => console.log("Error Connecting to the Mongo DB",error));
 
 {/*end mongodb config using mongoose*/}
+
+
+{/*start jwt authentication*/}
+app.post('/jwt',async (req,res)=>{
+    const user=req.body;
+    const token=jwt.sign(user,process.env.ACCESS_TOKEN_SECRET,{
+        expiresIn:'1hr'
+    })
+    res.send({token});
+})
+{/*end jwt authentication*/}
 
 {/*start import routes here*/}
     const menuRoutes=require('./api/routes/menuRoutes');
