@@ -1,6 +1,7 @@
 import { useContext } from "react";
 import { AuthContext } from "../../contexts/AuthProvider";
 import { getAuth, signOut } from "firebase/auth";
+import { Link } from "react-router-dom";
 
 
 const Profile = ({user}) => {
@@ -41,8 +42,10 @@ const Profile = ({user}) => {
     <ul className="min-h-full p-4 menu w-80 bg-base-200 text-base-content">
       {/* Sidebar content here */}
       <li><a href="/update-profile">Profile</a></li>
-      <li><a>Order</a></li>
-       <li><a>Setting</a></li>
+      <li><a href="/order">Order</a></li>
+    <li><a>Setting</a></li>
+      <li><Link to="/dashboard">Dashboard</Link></li>
+       
         <li><a onClick={handleLogout}>Log Out</a></li>
     </ul>
   </div>
