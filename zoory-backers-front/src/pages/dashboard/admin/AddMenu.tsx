@@ -1,13 +1,16 @@
 import { FaUtensils } from "react-icons/fa6";
 import { useForm } from "react-hook-form";
 import useAxiosPublic from "../../../hooks/useAxiosPublic";
+import useAxiosSecure from "../../../hooks/useAxiosSecure";
+import Swal from "sweetalert2";
 
 const AddMenu = () => {
   {
     /*start react hook form  */
   }
-  const { register, handleSubmit } = useForm();
+  const { register, handleSubmit, reset } = useForm();
   const axiosPublic = useAxiosPublic();
+  const axiosSecure = useAxiosSecure();
 
   //image hosting key
   const image_hosting_key = import.meta.env.VITE_IMAGE_HOSTING_KEY;
@@ -31,7 +34,19 @@ const AddMenu = () => {
         recipe: data.recipe,
         image: hostingImg.data.data.display_url,
       };
-      console.log(menuItem);
+      //console.log(menuItem.name);
+      const postMenuItem = axiosSecure.post("/menu", menuItem);
+      //console.log(postMenuItem);
+      if (postMenuItem) {
+        reset();
+        Swal.fire({
+          position: "center",
+          icon: "success",
+          title: "Your Item Is Addedd Successfully",
+          showConfirmButton: false,
+          timer: 1500,
+        });
+      }
     }
   };
 
