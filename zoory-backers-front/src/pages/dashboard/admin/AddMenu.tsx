@@ -1,20 +1,38 @@
 import { FaUtensils } from "react-icons/fa6";
 import { useForm } from "react-hook-form";
+import useAxiosPublic from "../../../hooks/useAxiosPublic";
 
 const AddMenu = () => {
   {
     /*start react hook form  */
   }
   const { register, handleSubmit } = useForm();
+  const axiosPublic = useAxiosPublic();
 
   //image hosting key
   const image_hosting_key = import.meta.env.VITE_IMAGE_HOSTING_KEY;
   //console.log(image_hosting_key);
-  const image_hosting_api = `https://api.imgbb.com/1/upload?expiration=600&key=${image_hosting_key}`;
+  const image_hosting_api = `https://api.imgbb.com/1/upload?key=${image_hosting_key}`;
 
   const onSubmit = async (data) => {
     //  console.log(data);
-    const imageFile = { image: };
+    const imageFile = { image: data.image[0] };
+    const hostingImg = await axiosPublic.post(image_hosting_api, imageFile, {
+      headers: {
+        "content-type": "multipart/form-data",
+      },
+    });
+    // console.log(hostingImg.data);
+    if (hostingImg.data.success) {
+      const menuItem = {
+        name: data.name,
+        category: data.category,
+        price: parseFloat(data.price),
+        recipe: data.recipe,
+        image: hostingImg.data.data.display_url,
+      };
+      console.log(menuItem);
+    }
   };
 
   {
