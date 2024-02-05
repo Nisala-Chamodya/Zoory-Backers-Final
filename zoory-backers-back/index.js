@@ -34,25 +34,7 @@ app.post('/jwt',async (req,res)=>{
 })
 {/*end jwt authentication*/}
 
-{/*start verification jwt token*/}
-//middleware
-const verifyToken =(req,res,next)=>{
-  //  console.log(req.headers.authorization);
-    if (!req.headers.authorization){
-        return res.status(401).send({message:"unauthorized access"});
-    }
-    const token=req.headers.authorization.split(' ')[1];
-  //  console.log(token)
-    jwt.verify(token,process.env.ACCESS_TOKEN_SECRET,(err,decoded)=>{
-        if (err){
-            return res.status(401).send({message:"Token is invalid"});
-        }
-        req.decoded=decoded;
-        next()
-    })
-}
 
-{/*end verification jwt token*/}
 
 {/*start import routes here*/}
     const menuRoutes=require('./api/routes/menuRoutes');
@@ -64,7 +46,7 @@ const verifyToken =(req,res,next)=>{
     app.use('/users',userRoutes);
 {/*end import routes here*/}
 
-app.get('/',verifyToken,(req, res) => {
+app.get('/',(req, res) => {
     res.send('Hello World!')
 })
 

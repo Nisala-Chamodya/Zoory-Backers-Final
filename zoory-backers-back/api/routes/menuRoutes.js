@@ -7,6 +7,9 @@ const menuController = require('../controllers/menuControllers')
 
 
 //get all menu items
-router.get('/',menuController.getAllMenuItems)
+router.get('/',menuController.getAllMenuItems);
+
+//post a menu item
+router.post('/',menuController.postMenuItem);
 
 module.exports=router;
