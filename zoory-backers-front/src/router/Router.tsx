@@ -9,6 +9,7 @@ import DashboardLayout from "../layout/DashboardLayout.tsx";
 
 import Dashboard from "../pages/dashboard/admin/Dashboard.tsx";
 import Users from "../pages/dashboard/admin/Users.tsx";
+import AddMenu from "../pages/dashboard/admin/AddMenu.tsx";
 
 const router = createBrowserRouter([
   {
@@ -49,6 +50,10 @@ const router = createBrowserRouter([
       {
         path: "users",
         element: <Users />,
+      },
+      {
+        path: "add-menu",
+        element: <AddMenu />,
       },
     ],
   },
