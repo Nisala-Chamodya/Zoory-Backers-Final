@@ -7,7 +7,15 @@ const AddMenu = () => {
   }
   const { register, handleSubmit } = useForm();
 
-  const onSubmit = (data) => console.log(data);
+  //image hosting key
+  const image_hosting_key = import.meta.env.VITE_IMAGE_HOSTING_KEY;
+  //console.log(image_hosting_key);
+  const image_hosting_api = `https://api.imgbb.com/1/upload?expiration=600&key=${image_hosting_key}`;
+
+  const onSubmit = async (data) => {
+    //  console.log(data);
+    const imageFile = { image: };
+  };
 
   {
     /*end react hook form */
