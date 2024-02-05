@@ -2,7 +2,7 @@ const Menu = require("../model/Menu");
 //get all menu item
 const getAllMenuItems = async (req,res) =>{
     try {
-        const menus=await Menu.find({});
+        const menus=await Menu.find({}).sort({createdAt: -1});
         res.status(200).json(menus)
 
     }catch (error){
