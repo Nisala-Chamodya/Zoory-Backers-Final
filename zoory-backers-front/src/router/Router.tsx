@@ -11,6 +11,7 @@ import Dashboard from "../pages/dashboard/admin/Dashboard.tsx";
 import Users from "../pages/dashboard/admin/Users.tsx";
 import AddMenu from "../pages/dashboard/admin/AddMenu.tsx";
 import ManageItem from "../pages/dashboard/admin/ManageItem.tsx";
+import UpdateMenu from "../pages/dashboard/admin/UpdateMenu.tsx";
 
 const router = createBrowserRouter([
   {
@@ -59,6 +60,12 @@ const router = createBrowserRouter([
       {
         path: "manage-items",
         element: <ManageItem />,
+      },
+      {
+        path: "update-menu/:id",
+        element: <UpdateMenu />,
+        loader: ({ params }) =>
+          fetch(`http://localhost:6001/menu/${params.id}`),
       },
     ],
   },
