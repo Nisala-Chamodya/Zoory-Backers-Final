@@ -1,10 +1,47 @@
 import { Link } from "react-router-dom";
 import useMenu from "../../../hooks/useMenu";
 import { FaEdit, FaTrashAlt } from "react-icons/fa";
+import Swal from "sweetalert2";
+import useAxiosSecure from "../../../hooks/useAxiosSecure";
 
 const ManageItem = () => {
   const [menu, refetch] = useMenu();
-  console.log(menu);
+  const axiosSecure = useAxiosSecure();
+
+  // console.log(menu);
+
+  {
+    /*start delete Function*/
+  }
+
+  const handleDeleteItem = (item) => {
+    Swal.fire({
+      title: "Are you sure?",
+      text: "You won't be able to revert this!",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "Yes, delete it!",
+    }).then(async (result) => {
+      if (result.isConfirmed) {
+        const res = await axiosSecure.delete(`/menu/${item._id}`);
+        console.log(res);
+        if (res) {
+          refetch;
+
+          Swal.fire({
+            title: "Deleted!",
+            text: "Your file has been deleted.",
+            icon: "success",
+          });
+        }
+      }
+    });
+  };
+  {
+    /*end Delete Function */
+  }
   return (
     <div className="w-full md:w-[870px] px-4 mx-auto">
       <h2 className="my-4 text-2xl font-semibold">
@@ -48,7 +85,10 @@ const ManageItem = () => {
                     </Link>
                   </td>
                   <td>
-                    <button className="text-white btn btn-ghost btn-xs bg-red">
+                    <button
+                      onClick={() => handleDeleteItem(item)}
+                      className="text-white btn btn-ghost btn-xs bg-red"
+                    >
                       <FaTrashAlt />
                     </button>
                   </td>
