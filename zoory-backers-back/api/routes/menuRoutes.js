@@ -13,7 +13,10 @@ router.get('/',menuController.getAllMenuItems);
 router.post('/',menuController.postMenuItem);
 
 //delete a menu item
-router.delete('/:id',menuController.deleteMenuItem)
+router.delete('/:id',menuController.deleteMenuItem);
+
+//get single Menu Item
+router.get('/:id',menuController.singleMenuItem)
 
 
 module.exports=router;
