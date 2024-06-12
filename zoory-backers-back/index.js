@@ -15,10 +15,10 @@ require('dotenv').config()
 
 {/*start mongodb config using mongoose*/}
 mongoose.connect(
-    `mongodb+srv://${process.env.DB_USER}:${process.env.DB_PASSWORD}@zoory-backers-client.18dvqa2.mongodb.net/zoory-backers-database?retryWrites=true&w=majority`
+    `mongodb+srv://${process.env.DB_USER}:${process.env.DB_PASSWORD}@zoory-backers-new-clust.arbgwe4.mongodb.net/?retryWrites=true&w=majority&appName=zoory-backers-new-cluster`
 ).
     then(
-        console.log("Mongodb connected successfully")
+        console.log("Mongodb connected successfullly")
 ).catch((error) => console.log("Error Connecting to the Mongo DB",error));
 
 {/*end mongodb config using mongoose*/}
